@@ -5,7 +5,7 @@ CLI tool to bootstrap new projects:
 - Node API
 - Vue.js
 
-![gif](./demo.gif)
+![gif](./demo.gif?new)
 
 ## Install
 
