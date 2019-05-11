@@ -3,7 +3,6 @@
   "description": "Generate project boilerplate for Hectare",
   "author": "Hectare",
   "version": "0.1.0",
-  "private": true,
   "main": "index.js",
   "dependencies": {
     "chalk": "^2.4.2",

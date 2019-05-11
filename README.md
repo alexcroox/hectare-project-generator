@@ -9,4 +9,4 @@ CLI tool to bootstrap new projects:
 
 ## Install
 
-`npm i hectare-generate -g`
+`npm i hectare-project-generator -g`
