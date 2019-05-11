@@ -1,0 +1,39 @@
+# Serverless definition file
+# --------------------------
+# Defines Lambda functions to be deployed to AWS using the Serverless Framework.
+# http://serverless.com
+#
+# This creates an API which proxies to lambda
+
+service: node-api
+
+plugins:
+  - serverless-offline
+  # - serverless-add-api-key
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-2
+  memorySize: 128
+  timeout: 20
+  environment: ${file(env.yml):${opt:stage, self:provider.stage}}
+
+# custom:
+#   apiKeys:
+#     - name: ${file(env.yml):${opt:stage, self:provider.stage}.AWS_API_KEY_SML}
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+          # private: true
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          # private: true
+          cors: true

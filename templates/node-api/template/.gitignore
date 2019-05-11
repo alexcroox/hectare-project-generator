@@ -1,0 +1,7 @@
+.DS_Store
+npm-debug.log*
+.serverless
+env.yml
+node_modules
+.vscode
+jsconfig.json
