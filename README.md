@@ -10,3 +10,5 @@ CLI tool to bootstrap new projects:
 ## Install
 
 `npm i hectare-project-generator -g`
+
+See README.md inside `/templates/` for more info on each template

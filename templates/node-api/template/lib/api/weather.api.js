@@ -6,7 +6,7 @@ const weatherApi = axios.create({
     Accept: 'application/json'
   },
   params: {
-    APPID: process.env.WEATHER_API_KEY
+    appid: process.env.WEATHER_API_KEY
   }
 })
 

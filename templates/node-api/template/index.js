@@ -45,5 +45,6 @@ mongoose.connection.on('error', error => {
 
 // Root Routes
 app.use('/weather', require('./functions/routes/weather'))
+app.use('/punk-beers', require('./functions/routes/punk'))
 
 module.exports.handler = serverless(app)

@@ -24,10 +24,12 @@ const getLocation = async (request, response) => {
 
     log.debug('Calling weather API for location:', data.location)
 
+    let apiResponseData
+
     try {
       let apiResponse = await weatherApi.request({
         method: 'GET',
-        url: `/weather/?query=${data.location}`
+        url: `/weather/?q=${data.location}`
       })
 
       apiResponseData = apiResponse.data
@@ -42,14 +44,14 @@ const getLocation = async (request, response) => {
 
     log.debug('Weather response', apiResponseData)
 
-    if (apiResponseData.id === undefined) {
-      throw 'loadId missing from API response'
+    if (apiResponseData.main === undefined) {
+      throw 'Weather data missing from API response'
     }
 
     return response.status(200).json({
       status: 'success',
-      message: 'Load successfully created',
-      data
+      message: 'Current weather',
+      data: apiResponseData
     })
   } catch (error) {
     log.error(error)
