@@ -2,14 +2,16 @@
   "name": "hectare-project-generator",
   "description": "Generate project boilerplate for Hectare",
   "author": "Hectare",
-  "version": "0.1.1",
+  "version": "0.1.6",
+  "homepage": "https://github.com/alexcroox/hectare-project-generator",
   "main": "index.js",
   "dependencies": {
     "chalk": "^2.4.2",
     "clipboardy": "^2.0.0",
     "inquirer": "^6.3.1",
     "replace-in-file": "^4.0.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "update-notifier": "^3.0.0"
   },
   "bin": {
     "hectare-generate": "./index.js"

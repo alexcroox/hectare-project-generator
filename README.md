@@ -5,7 +5,7 @@ CLI tool to bootstrap new projects:
 - Node API
 - Vue.js
 
-![gif](./demo.gif?new)
+![gif](https://raw.githubusercontent.com/alexcroox/hectare-project-generator/master/demo.gif)
 
 ## Install
 

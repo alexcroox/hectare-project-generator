@@ -4,14 +4,21 @@ const fs = require('fs')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const clipboardy = require('clipboardy')
+const pkg = require('./package.json')
 
 const copyDirectoryContents = require('./lib/copy-directory')
+const versionCheck = require('./lib/version-check')
+
+console.log(chalk.black.bgGreen(`Hectare Project Generator v${pkg.version}`))
+
+// Check we have the latest version before allowing selection
+const init = async () => {
+  await versionCheck(pkg)
+  prompt()
+}
 
 const CURRENT_DIRECTORY = process.cwd()
 const templates = ['node-api', 'vue-js']
-
-console.log(chalk.black.bgGreen('Hectare Project Generator'))
-
 const QUESTIONS = [
   {
     name: 'template',
@@ -29,7 +36,7 @@ const QUESTIONS = [
   }
 ]
 
-const initQuestions = async () => {
+const prompt = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
 
   const templateChoice = answers.template
@@ -64,4 +71,4 @@ const initQuestions = async () => {
   console.log(chalk.inverse(nextCommand))
 }
 
-initQuestions()
+init()
