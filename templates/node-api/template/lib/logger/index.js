@@ -1,25 +1,25 @@
-const Sentry = require('@sentry/node')
 const Log = require('./model')
 
 class Logger {
-  error(error, message = null) {
-    console.error(error)
-
-    if (message) {
-      console.error(message)
-    }
+  error(message, error) {
+    console.error(message, error)
 
     this.dbSave('API error', error, message)
-    Sentry.captureException(error)
+
+    if (!process.env.IS_OFFLINE) {
+      const Sentry = require('@sentry/node')
+      Sentry.captureException(error)
+    }
   }
 
-  debug(data, message) {
-    console.log(data)
-    if (message) console.error(message)
+  debug(message, data) {
+    console.log(message, data)
   }
 
   // Save log to the database
   async dbSave(type, data, message) {
+    this.debug(data, type)
+
     const log = new Log({
       type,
       data,

@@ -4,17 +4,19 @@ const app = express()
 const log = require('./lib/logger')
 
 // Add Sentry error reporting
-const Sentry = require('@sentry/node')
-Sentry.init({
-  dsn: process.env.SENTRY_DSN
-})
+if (!process.env.IS_OFFLINE) {
+  const Sentry = require('@sentry/node')
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN
+  })
 
-app.use(Sentry.Handlers.requestHandler())
-app.use(Sentry.Handlers.errorHandler())
+  app.use(Sentry.Handlers.requestHandler())
+  app.use(Sentry.Handlers.errorHandler())
 
-// Let Sentry post off errors before Lambda kills the process
-const sentryFlush = require('./middleware/sentry')
-app.use(sentryFlush)
+  // Let Sentry post off errors before Lambda kills the process
+  const sentryFlush = require('./middleware/sentry')
+  app.use(sentryFlush)
+}
 
 // Add CORS support for our browser calls
 const cors = require('cors')
