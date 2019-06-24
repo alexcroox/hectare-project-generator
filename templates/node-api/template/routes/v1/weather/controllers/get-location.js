@@ -1,7 +1,7 @@
 const yup = require('yup')
-const weatherApi = require('../../../../lib/api/weather.api')
-const parseAxiosError = require('../../../../lib/api/parse-axios-error')
-const log = require('../../../../lib/logger')
+const weatherApi = require('@lib/api/weather.api')
+const parseAxiosError = require('@lib/api/parse-axios-error')
+const log = require('@lib/logger')
 
 const validationSchema = yup.object().shape({
   location: yup.string().required()

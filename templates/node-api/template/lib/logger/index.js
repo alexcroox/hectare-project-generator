@@ -12,7 +12,7 @@ class Logger {
     }
   }
 
-  debug(message, data) {
+  debug(message, data = '') {
     console.log(message, data)
   }
 

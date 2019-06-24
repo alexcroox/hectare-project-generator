@@ -1,7 +1,9 @@
 const serverless = require('serverless-http')
 const express = require('express')
 const app = express()
-const log = require('./lib/logger')
+
+// Allow us to use aliases for our imports, e.g require('@/lib/...')
+require('module-alias/register')
 
 // Add Sentry error reporting
 if (!process.env.IS_OFFLINE) {
@@ -35,18 +37,10 @@ const bearerToken = require('express-bearer-token')
 app.use(bearerToken())
 
 // Connect to our db
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DB_HOST, {
-  useNewUrlParser: true
-})
-
-mongoose.connection.on('error', error => {
-  log.error('MongoDB error', error)
-  Sentry.captureException(error)
-})
+require('./lib/mongo')
 
 // Root Routes
-app.use('/weather', require('./functions/routes/weather'))
-app.use('/punk-beers', require('./functions/routes/punk'))
+app.use('/v1/weather', require('./routes/v1/weather'))
+app.use('/v1/punk-beers', require('./routes/v1/punk'))
 
 module.exports.handler = serverless(app)

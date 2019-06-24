@@ -1,6 +1,6 @@
-const punkApi = require('../../../../lib/api/punk.api')
-const parseAxiosError = require('../../../../lib/api/parse-axios-error')
-const log = require('../../../../lib/logger')
+const punkApi = require('@lib/api/punk.api')
+const parseAxiosError = require('@lib/api/parse-axios-error')
+const log = require('@lib/logger')
 
 const getBeers = async (request, response) => {
   try {

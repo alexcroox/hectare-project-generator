@@ -2,7 +2,7 @@
   "name": "hectare-project-generator",
   "description": "Generate project boilerplate for Hectare",
   "author": "Hectare",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "homepage": "https://github.com/alexcroox/hectare-project-generator",
   "main": "index.js",
   "dependencies": {
