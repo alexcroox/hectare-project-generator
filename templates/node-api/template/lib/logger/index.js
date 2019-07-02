@@ -12,14 +12,16 @@ class Logger {
     }
   }
 
-  debug(message, data = '') {
-    console.log(message, data)
+  debug(message, data) {
+    if (!data) {
+      console.log(message)
+    } else {
+      console.log(message, data)
+    }
   }
 
   // Save log to the database
   async dbSave(type, data, message) {
-    this.debug(data, type)
-
     const log = new Log({
       type,
       data,
