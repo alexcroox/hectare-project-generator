@@ -10,14 +10,16 @@ const validationSchema = yup.object().shape({
 const getLocation = async (request, response) => {
   let data = request.params
 
-  await validationSchema.validate(data).catch(validationError => {
+  try {
+    await validationSchema.validate(data)
+  } catch (validationError) {
     log.debug(validationError.errors)
 
     return response.status(400).json({
       status: 'error',
       message: validationError.errors
     })
-  })
+  }
 
   log.debug('Calling weather API for location:', data.location)
 
