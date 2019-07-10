@@ -9,19 +9,14 @@ service: node-api
 
 plugins:
   - serverless-offline
-  - serverless-add-api-key
 
 provider:
   name: aws
   runtime: nodejs10.x
   region: eu-west-2
   memorySize: 128
-  timeout: 20
+  timeout: 15
   environment: ${file(env.yml):${opt:stage, self:provider.stage}}
-
-custom:
-  apiKeys:
-    - name: ${file(env.yml):${opt:stage, self:provider.stage}.AWS_API_KEY_SML}
 
 functions:
   app:
@@ -30,10 +25,8 @@ functions:
       - http:
           path: /
           method: ANY
-          private: ${file(env.yml):${opt:stage, self:provider.stage}.API_PRIVATE}
           cors: true
       - http:
           path: /{proxy+}
           method: ANY
-          private: ${file(env.yml):${opt:stage, self:provider.stage}.API_PRIVATE}
           cors: true

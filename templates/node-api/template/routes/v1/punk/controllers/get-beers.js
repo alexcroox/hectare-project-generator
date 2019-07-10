@@ -1,6 +1,6 @@
 const punkApi = require('@lib/api/punk.api')
 const parseAxiosError = require('@lib/api/parse-axios-error')
-const log = require('@lib/logger')
+const log = require('@hectare/service-log')
 
 const getBeers = async (request, response) => {
   let data = request.params
